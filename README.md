@@ -1,6 +1,6 @@
-# Chef Fusion
+# 🍳 Chef Fusion
 
-An integrated native desktop and web application solution, enabling **offline operations** and **remote access**, specifically developed to streamline and modernize the workflows of small food service businesses.
+An integrated **native desktop** and **web application** designed for small food service businesses, enabling **offline operations** and **remote access**. Built to streamline workflows, ensure data consistency, and bridge the gap between on-site and cloud-based operations.
 
 ---
 
@@ -13,36 +13,37 @@ An integrated native desktop and web application solution, enabling **offline op
   - **Local:** SQLite (offline mode)
   - **Cloud:** PostgreSQL (online mode)
 - **Containerization:** Docker + Docker Compose
-- **Syncing:** HTTP-based API calls, local-first design
+- **Syncing:** HTTP-based API calls (local-first design)
 
 ---
 
 ## 📂 Folder Structure
 
+```plaintext
 project-root/
 │
 ├── docker/                          # Docker-related configuration
 │   ├── backend.Dockerfile           # Dockerfile for Actix backend
 │   ├── frontend.Dockerfile          # Dockerfile for SolidJS frontend
 │   ├── docker-compose.yml           # Orchestrates backend, frontend, and database containers
-│   └── scripts/                     # Helper scripts for building and running containers
+│   └── scripts/                     # Helper scripts for Docker builds and runs
 │
-├── backend/                         # Actix web server (Rust)
+├── backend/                         # Actix Web backend (Rust)
 │   ├── Cargo.toml
 │   ├── Cargo.lock
 │   ├── src/
 │   │   ├── main.rs                   # Entry point
-│   │   ├── config.rs                 # Config loading (env vars, db URLs, etc.)
-│   │   ├── routes/                   # All API routes
+│   │   ├── config.rs                 # Environment/config loader
+│   │   ├── routes/                   # API endpoints
 │   │   │   ├── mod.rs
 │   │   │   ├── inventory.rs
 │   │   │   ├── sales.rs
 │   │   │   └── sync.rs
-│   │   ├── services/                 # Business logic
+│   │   ├── services/                 # Business logic layer
 │   │   │   ├── inventory_service.rs
 │   │   │   ├── sales_service.rs
 │   │   │   └── sync_service.rs
-│   │   ├── database/                 # DB connection logic
+│   │   ├── database/                 # Database connection logic
 │   │   │   ├── mod.rs
 │   │   │   ├── sqlite.rs
 │   │   │   └── postgres.rs
@@ -50,7 +51,7 @@ project-root/
 │   │   │   ├── inventory.rs
 │   │   │   ├── sales.rs
 │   │   │   └── common.rs
-│   │   ├── utils/                    # Helpers and utility functions
+│   │   ├── utils/                    # Helper utilities
 │   │   │   ├── mod.rs
 │   │   │   └── logger.rs
 │   │   └── lib.rs
@@ -71,27 +72,27 @@ project-root/
 │   │   │   ├── Inventory.tsx
 │   │   │   ├── Sales.tsx
 │   │   │   └── Settings.tsx
-│   │   ├── services/                 # API calls to Actix backend
+│   │   ├── services/                 # API calls to backend
 │   │   │   ├── api.ts
 │   │   │   ├── inventory.ts
 │   │   │   └── sales.ts
-│   │   ├── store/                    # Global state (SolidJS store)
+│   │   ├── store/                    # Global state management
 │   │   │   ├── inventoryStore.ts
 │   │   │   └── salesStore.ts
 │   │   └── styles/
 │   │       └── main.css
 │   └── .env                          # Frontend environment variables
 │
-├── src-tauri/                        # Tauri project files
-│   ├── tauri.conf.json               # Tauri configuration
+├── src-tauri/                        # Tauri wrapper
+│   ├── tauri.conf.json               # Tauri config
 │   ├── Cargo.toml
 │   ├── src/
-│   │   ├── main.rs                   # Tauri entry point
-│   │   ├── commands.rs               # Tauri commands to bridge backend and frontend
-│   │   ├── offline_sync.rs           # Sync logic when app goes online
-│   │   └── local_db.rs               # SQLite local operations
+│   │   ├── main.rs                   # Tauri entry
+│   │   ├── commands.rs               # Tauri command bridge
+│   │   ├── offline_sync.rs           # Local-to-cloud sync logic
+│   │   └── local_db.rs               # SQLite operations
 │
-├── scripts/                          # General helper scripts (non-Docker)
+├── scripts/                          # General helper scripts
 │   ├── build_all.sh
 │   ├── run_dev.sh
 │   └── deploy.sh
